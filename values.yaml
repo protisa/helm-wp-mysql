@@ -1,0 +1,21 @@
+namespace: wordpress
+
+wordpress:
+    deployment:
+        image: wordpress:5.4.1-apache
+    service:
+        type: LoadBalancer
+    
+mysql:
+    deployment:
+        image: mysql:5.6
+    service:
+        type: ClusterIP
+    pvc:
+        accessMode: ReadWriteOnce
+        storage: 2Gi
+        name: wp-pv-claim
+    secrets:
+        name: mysql-pass
+        data:
+          password: MWYyZDFlMmU2N2Rm
